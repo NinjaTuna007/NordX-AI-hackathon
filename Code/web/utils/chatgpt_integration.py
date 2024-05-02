@@ -12,7 +12,7 @@ sections = data['sections']
 # Use the sections data in your functions
 
 # Set up the OpenAI API key
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+# openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Define the sections to compare
 section1 = "This is the content of the first section..."
@@ -59,20 +59,3 @@ def compare_sections():
     section2 = request.form['section2']
     comparison_report = generate_comparison_report(section1, section2)
     return render_template('comparison_report.html', report=comparison_report)
-
-@app.route('/generate_final_report', methods=['POST'])
-def generate_final_report_route():
-# comes from the json file
-    report_scores = {
-        "difference report1": 0.8,
-        "difference report2": 0.6,
-        "difference report3": 0.9,
-    }
-
-    # Sort the report scores from highest to lowest dissimilarity
-    sorted_report_scores = sort_report_scores(report_scores)
-
-    # Generate the final report
-    final_report = generate_final_report(report_scores)
-
-    return render_template('final_report.html', report=final_report, sorted_scores=sorted_report_scores, sections=sections)
