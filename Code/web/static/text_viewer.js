@@ -42,17 +42,17 @@ function saveToJson() {
         },
         body: JSON.stringify(textData)
     })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the JSON response
+    })
     .then(data => {
-        console.log(data);
-        // Assuming 'data' contains the 'pairs' data for the accordion
-        const pairs = data.pairs; // Extract the 'pairs' data
-
-        // Call the buildAccordion function with the pairs data
-        console.log(pairs);
-
-        console.log('Text data saved to JSON file and accordion updated');
+        console.log(data)
+        // Use data to build accordeon
     })
     .catch(error => {
-        console.error('Error saving text data to JSON file:', error);
+        console.error('Error building accordeon:', error);
     });
 }

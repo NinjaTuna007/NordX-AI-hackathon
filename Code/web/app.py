@@ -99,12 +99,13 @@ def text_viewer():
     text_viewer = TextViewer()
     return text_viewer.toggle_template()
 
-@app.route('/save-text', methods=['POST'])
+@app.route('/submit-text', methods=['POST'])
 def save_text():
     text_viewer = TextViewer()
     text_data = request.get_json()
 
-    text_viewer.save_text_to_json(text_data) # Or just send it through the API call
+    # text_viewer.save_text_to_json(text_data) # Or just send it through the API call
+    
     # Send API call to get SDR pairs
     # Read data from example.json
 
@@ -112,21 +113,20 @@ def save_text():
         data = json.load(f)
     pairs = process_pairs(data)
 
-    return jsonify(pairs=pairs)
+    return jsonify(pairs)
 
 def process_pairs(data):
     # Process the JSON data and create (score, SDR) pairs
-    SCORE_THRESHOLD = 7
+    SCORE_THRESHOLD = 0.05
     pairs = []
     for section_id, section_data in data.items():
         score = section_data['score']
         sdr = section_data['SDR']
-        if score <= SCORE_THRESHOLD:
+        if score >= SCORE_THRESHOLD:
             pairs.append((score, sdr))
 
     # Sort the pairs in ascending order based on the score
     pairs.sort(key=lambda x: x[0])
-
     return pairs;
 
 
