@@ -1,53 +1,73 @@
-import React, { useState } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
+import RichTextExample from './RichText.js';
 
-const TextComparisonComponent = () => {
-  const [file1, setFile1] = useState(null);
-  const [file2, setFile2] = useState(null);
+
+function TextComparisonComponent() {
+  const [textFile1, setTextFile1] = useState('');
+  const [textFile2, setTextFile2] = useState('');
   const [summary, setSummary] = useState('');
-  const [differences, setDifferences] = useState([]);
+  const [pairs, setPairs] = useState([]);
+  
+  const editorRef = useRef(null);
 
   const handleFileUpload1 = (event) => {
-    setFile1(event.target.files[0]);
+    setTextFile1(event.target.files[0]);
   };
 
   const handleFileUpload2 = (event) => {
-    setFile2(event.target.files[0]);
+    setTextFile2(event.target.files[0]);
   };
 
-  const handleCompareText = () => {
+
+  /*useEffect(() => {
+    // Update the Slate editor with the new summary text
+    if (editor.children[0].children[0].text !== summary) {
+      editor.children[0].children[0].text = summary;
+      editor.onChange();
+    }
+  }, [summary]);*/
+
+  const handleCompareText = async (event) => {
+    event.preventDefault();
+
+    // Create a dictionary with the text from the input fields
     const textData = {
-      "OLD": file1,
-      "NEW": file2
+      "OLD": textFile1,
+      "NEW": textFile2
     };
 
-    fetch('/api/compare-text', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(textData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setSummary(data.summary);
-        setDifferences(data.pairs);
-      })
-      .catch((error) => {
-        console.error('Error comparing text:', error);
+    try {
+      const response = await fetch('/api/compare-text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(textData)
       });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setSummary(data.summary);
+      setPairs(data.pairs);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
     <div>
-      <h1>Text Comparison</h1>
       <input type="file" onChange={handleFileUpload1} />
       <input type="file" onChange={handleFileUpload2} />
       <button onClick={handleCompareText}>Compare Text</button>
       <h2>Summary</h2>
+      <RichTextExample></RichTextExample>
       <p>{summary}</p>
       <h2>Differences</h2>
       <ul>
-        {differences.map((diff, index) => (
+        {pairs.map((diff, index) => (
           <li key={index}>
             <p>Score: {diff.score}</p>
             <p>{diff.SDR}</p>
@@ -56,6 +76,6 @@ const TextComparisonComponent = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default TextComparisonComponent;
