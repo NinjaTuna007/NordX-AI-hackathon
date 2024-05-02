@@ -6,3 +6,4 @@ pinecone-client
 tiktoken
 PyMuPDF
 pyperclip
+requests

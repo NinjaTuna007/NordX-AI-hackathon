@@ -13,6 +13,7 @@ import numpy as np # # Initialize the tokenizer and model
 from text_viewer import TextViewer
 import boto3
 
+from titan_api import call_titan_api
 
 def load_data(file_path):
     # Load the dataset
@@ -100,7 +101,7 @@ def text_viewer():
     return text_viewer.toggle_template()
 
 @app.route('/submit-text', methods=['POST'])
-def save_text():
+def submit_text():
     text_viewer = TextViewer()
     text_data = request.get_json()
 
@@ -111,9 +112,21 @@ def save_text():
 
     with open('example.json', 'r') as f:
         data = json.load(f)
-    pairs = process_pairs(data)
 
-    return jsonify(pairs)
+    prompt = "Based on the following context, summarise the differences provided with the following scores. The scores indicate how much emphasis you should put on the specific difference in the summary, with the higher scores being more important.\n"
+    prompt += json.dumps(data)
+
+    # Generate mega report using prompt and call_titan_api
+    summary = call_titan_api(prompt)
+
+    pairs = process_pairs(data)
+    print(summary)
+
+    response_data = {
+        "summary": summary,
+        "pairs": pairs
+    }
+    return jsonify(response_data)
 
 def process_pairs(data):
     # Process the JSON data and create (score, SDR) pairs
@@ -123,11 +136,12 @@ def process_pairs(data):
         score = section_data['score']
         sdr = section_data['SDR']
         if score >= SCORE_THRESHOLD:
-            pairs.append((score, sdr))
+            # Append a dictionary with 'score' and 'SDR' keys instead of a tuple
+            pairs.append({'score': score, 'SDR': sdr})
 
     # Sort the pairs in ascending order based on the score
-    pairs.sort(key=lambda x: x[0])
-    return pairs;
+    pairs.sort(key=lambda x: x['score'])
+    return pairs
 
 
 @app.route('/show-accordion', methods=['POST'])
