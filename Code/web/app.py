@@ -9,8 +9,10 @@ import tensorflow as tf
 from transformers import BertTokenizer, TFBertModel
 import numpy as np # # Initialize the tokenizer and model
 import complete
-from pdfviewer import PDFViewer
 import tkinter as tk
+from utils.chatgpt_integration import generate_comparison_report
+
+
 
 def load_data(file_path):
     # Load the dataset
@@ -68,6 +70,14 @@ def text_viewer():
                         text_file1=text_file1,
                         text_file2=text_file2,
                         highlighted_text=highlighted_text)
+
+@app.route('/compare_sections', methods=['POST'])
+def compare_sections():
+    section1 = request.form['section1']
+    section2 = request.form['section2']
+    comparison_report = generate_comparison_report(section1, section2)
+    return render_template('comparison_report.html', report=comparison_report)
+ 
 
 
 if __name__ == "__main__":
