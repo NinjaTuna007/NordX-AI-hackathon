@@ -9,6 +9,8 @@ import tensorflow as tf
 from transformers import BertTokenizer, TFBertModel
 import numpy as np # # Initialize the tokenizer and model
 import complete
+from pdfviewer import PDFViewer
+import tkinter as tk
 
 def load_data(file_path):
     # Load the dataset
@@ -54,6 +56,18 @@ def chat():
 # chat() gets the input from the msg field and then get_Chat_response proccess it
 def get_Chat_response(query):
     return complete.execution(query)
+
+@app.route('/text-viewer')
+def text_viewer():
+    # Fetch the text files and highlighted text from the backend
+    text_file1 = "This is the content of the first text file."
+    text_file2 = "This is the content of the second text file."
+    highlighted_text = "the content"
+
+    return render_template('text_viewer.html',
+                        text_file1=text_file1,
+                        text_file2=text_file2,
+                        highlighted_text=highlighted_text)
 
 
 if __name__ == "__main__":

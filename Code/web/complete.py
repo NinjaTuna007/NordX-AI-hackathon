@@ -10,6 +10,8 @@ from transformers import BertTokenizer, TFBertModel
 import tensorflow as tf
 import numpy as np
 
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 
 index_name = 'semaphore'
 context_cap_per_query = 30
