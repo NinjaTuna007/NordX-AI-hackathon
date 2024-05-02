@@ -7,3 +7,5 @@ tiktoken
 PyMuPDF
 pyperclip
 requests
+react
+react-dom
