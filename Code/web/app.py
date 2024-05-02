@@ -72,5 +72,13 @@ def save_text():
 
 
 
+@app.route('/compare_sections', methods=['POST'])
+def compare_sections():
+    section1 = request.form['section1']
+    section2 = request.form['section2']
+    comparison_report = generate_comparison_report(section1, section2)
+    return render_template('comparison_report.html', report=comparison_report)
+
+
 if __name__ == "__main__":
     app.run()

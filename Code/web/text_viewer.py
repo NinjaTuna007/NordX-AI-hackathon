@@ -13,8 +13,10 @@ class TextViewer:
         # Create the file path for the JSON file
         json_file = os.path.join(script_dir, 'text_data.json')
 
+        """
         # Save the text data to the JSON file
         with open(json_file, 'w') as f:
             json.dump(text_data, f, indent=4)
+        """
 
         return jsonify({'message': 'Text data saved to JSON file'})
