@@ -9,7 +9,6 @@ import tensorflow as tf
 from transformers import BertTokenizer, TFBertModel
 import numpy as np # # Initialize the tokenizer and model
 import complete
-import tkinter as tk
 from utils.chatgpt_integration import generate_comparison_report
 
 
@@ -34,13 +33,38 @@ model = TFBertModel.from_pretrained(model_name)
 descriptions = [item['Description'] for item in data]
 
 
-
 # use the the enocoding function to generate embeddings
 load_dotenv()  # This loads the environment variables from `.env`.
 
 # Now you can access your API key (or any other environment variable) like this:
 
 app = Flask(__name__)
+
+
+
+def extract_text_from_pdf(pdf_bytes):
+    textract = boto3.client('textract')
+    response = textract.detect_document_text(Document={'Bytes': pdf_bytes})
+    text = ""
+    for item in response["Blocks"]:
+        if item["BlockType"] == "LINE":
+            text += item["Text"] + "\n"
+    return text
+
+@app.route('/upload-pdf', methods=['POST'])
+def upload_pdf():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+    if file and file.filename.endswith('.pdf'):
+        pdf_bytes = file.read()
+        extracted_text = extract_text_from_pdf(pdf_bytes)
+        return jsonify({"text": extracted_text})
+    else:
+        return jsonify({"error": "Unsupported file type"}), 400
+
 
 @app.route("/") 
 # what is displayed for the main page

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Report</title>
+</head>
+<body>
+    <h1>Final Report</h1>
+    <pre>{{ report }}</pre>
+
+    <h2>Sorted Report Scores</h2>
+    <table>
+        <tr>
+            <th>Report Name</th>
+            <th>Dissimilarity Score</th>
+        </tr>
+        {% for report_name, score in sorted_scores %}
+        <tr>
+            <td>{{ report_name }}</td>
+            <td>{{ score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Sections</h2>
+    {% for section in sections %}
+    <h3>{{ section.name }}</h3>
+    <p>{{ section.content }}</p>
+    {% endfor %}
+</body>
+</html>

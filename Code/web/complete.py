@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 from transformers import BertTokenizer, TFBertModel
 import tensorflow as tf
 import numpy as np
+import boto3
+from flask import Flask, request, jsonify
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
