@@ -2,48 +2,115 @@
 <html>
 <head>
     <title>Text Viewer</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .highlight {
-            background-color: yellow;
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .input-field {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="container my-5">
-        <h1 class="mb-4">Text Viewer</h1>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Text File 1
-                    </div>
-                    <div class="card-body">
-                        <pre id="text-file1">{{ text_file1 }}</pre>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Text File 2
-                    </div>
-                    <div class="card-body">
-                        <pre id="text-file2">{{ text_file2 }}</pre>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="input-container">
+            <div class="input-label">Text File 1:</div>
+            <input type="text" class="input-field" id="text-file1" placeholder="Enter text for file 1">
+            <div class="input-label">Text File 2:</div>
+            <input type="text" class="input-field" id="text-file2" placeholder="Enter text for file 2">
+            <button class="submit-button" onclick="submitTexts()">Submit</button>
         </div>
+
+        {% if text_file1 and text_file2 %}
+        <div class="input-container">
+            <div class="input-label">Text File 1:</div>
+            <textarea class="input-field" readonly>{{ text_file1 }}</textarea>
+            <div class="input-label">Text File 2:</div>
+            <textarea class="input-field" readonly>{{ text_file2 }}</textarea>
+        </div>
+        {% endif %}
     </div>
 
     <script>
-        // Highlight the text sent from the backend
-        var highlightedText = "{{ highlighted_text }}";
-        var textFile1 = document.getElementById('text-file1');
-        var textFile2 = document.getElementById('text-file2');
+        function submitTexts() {
+            const textFile1 = document.getElementById('text-file1').value;
+            const textFile2 = document.getElementById('text-file2').value;
 
-        textFile1.innerHTML = textFile1.innerHTML.replace(highlightedText, '<span class="highlight">' + highlightedText + '');
-        textFile2.innerHTML = textFile2.innerHTML.replace(highlightedText, '<span class="highlight">' + highlightedText + '');
+            // Create a dictionary with the text from the input fields
+            const textData = {
+                "OLD": textFile1,
+                "NEW": textFile2
+            };
+
+            // Save the text data to a JSON file
+            saveTextToJson(textData);
+        }
+        function saveTextToJson(textData) {
+            // Make an AJAX request to the server to save the text data
+            fetch('/save-text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(textData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Text data saved to JSON file');
+                } else {
+                    console.error('Error saving text data to JSON file');
+                }
+            })
+            .catch(error => {
+                console.error('Error saving text data to JSON file:', error);
+            });
+        }
     </script>
 </body>
 </html>

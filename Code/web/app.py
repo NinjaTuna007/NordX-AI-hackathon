@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
 import os
-import pinecone
-from openai import OpenAI
+#import pinecone
+#from openai import OpenAI
 import numpy as np
 import json
-import tensorflow as tf
-from transformers import BertTokenizer, TFBertModel
+#import tensorflow as tf
+#from transformers import BertTokenizer, TFBertModel
 import numpy as np # # Initialize the tokenizer and model
-import complete
-from pdfviewer import PDFViewer
-import tkinter as tk
+#import complete
+#import tkinter as tk
+from text_viewer import TextViewer
+
 
 def load_data(file_path):
     # Load the dataset
@@ -20,12 +21,12 @@ def load_data(file_path):
 
 data = load_data('FreeCoursePartList.txt')
 
-
+"""
 # Initialize the tokenizer and model
 model_name = 'bert-base-cased'
 tokenizer = BertTokenizer.from_pretrained(model_name)
 model = TFBertModel.from_pretrained(model_name)
-
+"""
 
 
 # Extract descriptions from your data
@@ -39,7 +40,7 @@ load_dotenv()  # This loads the environment variables from `.env`.
 # Now you can access your API key (or any other environment variable) like this:
 
 app = Flask(__name__)
-
+"""
 @app.route("/") 
 # what is displayed for the main page
 def index():
@@ -56,18 +57,19 @@ def chat():
 # chat() gets the input from the msg field and then get_Chat_response proccess it
 def get_Chat_response(query):
     return complete.execution(query)
+"""
 
 @app.route('/text-viewer')
 def text_viewer():
-    # Fetch the text files and highlighted text from the backend
-    text_file1 = "This is the content of the first text file."
-    text_file2 = "This is the content of the second text file."
-    highlighted_text = "the content"
+    text_viewer = TextViewer()
+    return text_viewer.toggle_template()
 
-    return render_template('text_viewer.html',
-                        text_file1=text_file1,
-                        text_file2=text_file2,
-                        highlighted_text=highlighted_text)
+@app.route('/save-text', methods=['POST'])
+def save_text():
+    text_viewer = TextViewer()
+    text_data = request.get_json()
+    return text_viewer.save_text_to_json(text_data)
+
 
 
 if __name__ == "__main__":
