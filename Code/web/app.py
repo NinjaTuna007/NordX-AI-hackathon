@@ -11,6 +11,7 @@ import numpy as np # # Initialize the tokenizer and model
 #import complete
 #import tkinter as tk
 from text_viewer import TextViewer
+import boto3
 
 
 def load_data(file_path):
@@ -59,6 +60,40 @@ def get_Chat_response(query):
     return complete.execution(query)
 """
 
+# Configure AWS credentials and region
+aws_access_key_id = 'ASIA2P574NWBKK7X6CMU'
+aws_secret_access_key = 'F1hlF+WMT+dC1aTmNjSYfDXj3xa9e4AJdZYJb5AQ'
+aws_region = 'us-west-2'
+
+# Create a Lambda client
+lambda_client = boto3.client('lambda',
+                            aws_access_key_id=aws_access_key_id,
+                            aws_secret_access_key=aws_secret_access_key,
+                            region_name=aws_region)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/invoke-lambda', methods=['POST'])
+def invoke_lambda():
+    function_name = request.json['functionName']
+    payload = request.json['payload']
+
+    try:
+        response = lambda_client.invoke(
+            FunctionName=function_name,
+            Payload=payload.encode()
+        )
+
+        return jsonify({
+            'body': response['Payload'].read().decode(),
+            'status': response['StatusCode']
+        })
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/text-viewer')
 def text_viewer():
     text_viewer = TextViewer()
@@ -68,9 +103,36 @@ def text_viewer():
 def save_text():
     text_viewer = TextViewer()
     text_data = request.get_json()
-    return text_viewer.save_text_to_json(text_data)
+
+    text_viewer.save_text_to_json(text_data) # Or just send it through the API call
+    # Send API call to get SDR pairs
+    # Read data from example.json
+
+    with open('example.json', 'r') as f:
+        data = json.load(f)
+    pairs = process_pairs(data)
+
+    return jsonify(pairs=pairs)
+
+def process_pairs(data):
+    # Process the JSON data and create (score, SDR) pairs
+    SCORE_THRESHOLD = 7
+    pairs = []
+    for section_id, section_data in data.items():
+        score = section_data['score']
+        sdr = section_data['SDR']
+        if score <= SCORE_THRESHOLD:
+            pairs.append((score, sdr))
+
+    # Sort the pairs in ascending order based on the score
+    pairs.sort(key=lambda x: x[0])
+
+    return pairs;
 
 
+@app.route('/show-accordion', methods=['POST'])
+def show_accordion():
+    return render_template('accordion.html')
 
 @app.route('/compare_sections', methods=['POST'])
 def compare_sections():

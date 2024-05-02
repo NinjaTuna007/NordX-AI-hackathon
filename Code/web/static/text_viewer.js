@@ -33,13 +33,8 @@ function saveToJson() {
         "OLD": textFile1,
         "NEW": textFile2
     };
+    // Send to python script and get some response back
 
-    // Save the text data to a JSON file
-    saveTextToJson(textData);
-}
-
-function saveTextToJson(textData) {
-    // Make an AJAX request to the server to save the text data
     fetch('/save-text', {
         method: 'POST',
         headers: {
@@ -47,12 +42,15 @@ function saveTextToJson(textData) {
         },
         body: JSON.stringify(textData)
     })
-    .then(response => {
-        if (response.ok) {
-            console.log('Text data saved to JSON file');
-        } else {
-            console.error('Error saving text data to JSON file');
-        }
+    .then(data => {
+        console.log(data);
+        // Assuming 'data' contains the 'pairs' data for the accordion
+        const pairs = data.pairs; // Extract the 'pairs' data
+
+        // Call the buildAccordion function with the pairs data
+        console.log(pairs);
+
+        console.log('Text data saved to JSON file and accordion updated');
     })
     .catch(error => {
         console.error('Error saving text data to JSON file:', error);
