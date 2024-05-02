@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invoke AWS Lambda Function</title>
+</head>
+<body>
+  <h1>Invoke AWS Lambda Function</h1>
+
+  <form id="lambda-form">
+    <label for="function-name">Function Name:</label>
+    <input type="text" id="function-name" name="function-name" required>
+
+    <label for="payload">Payload (JSON):</label>
+    <textarea id="payload" name="payload" rows="5" required></textarea>
+
+    <button type="submit">Invoke Function</button>
+  </form>
+
+  <div id="response-container" style="display: none;">
+    <h2>Function Response</h2>
+    <pre id="response-body"></pre>
+    <p>Status Code: <span id="response-status"></p>
+  </div>
+
+  <script>
+    document.getElementById('lambda-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var functionName = document.getElementById('function-name').value;
+      var payload = document.getElementById('payload').value;
+
+      fetch('/invoke-lambda', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          functionName: functionName,
+          payload: payload
+        })
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        document.getElementById('response-body').textContent = JSON.stringify(data.body, null, 2);
+        document.getElementById('response-status').textContent = response.status;
+        document.getElementById('response-container').style.display = 'block';
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>

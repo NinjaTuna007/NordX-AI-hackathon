@@ -14,7 +14,6 @@ from flask import Flask, request, jsonify
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-
 index_name = 'semaphore'
 context_cap_per_query = 30
 match_min_score = 0.75    # similarity score  
