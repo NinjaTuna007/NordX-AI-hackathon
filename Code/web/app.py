@@ -142,7 +142,7 @@ def compare_text():
         # print(dataMatrix)
 
 
-        d = {"SDR": SDR, "ID": pair[3], "Title": pair[4], "score": dataMatrix}
+        d = {"SDR": SDR, "ID": pair[3], "Title": pair[4], "score": dataMatrix, "old": pair[0]['content'], "new": pair[1]['content']}
         data[pair[3]] = d
 
 
