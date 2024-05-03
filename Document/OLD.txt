@@ -1,0 +1,162 @@
+
+Section 2
+
+Specific eligibility criteria for certain types of marketable assets
+
+Subsection 1
+
+Specific eligibility criteria for asset-backed securities
+
+Article 72
+
+Eligibility criteria for asset-backed securities
+
+In order to be eligible for Eurosystem credit operations, asset-backed securities shall comply with the general eligibility criteria relating to all types of marketable assets laid down in Section 1, with the exception of the requirements laid down in Article 62 relating to the principal amount, and in addition, the specific eligibility criteria laid down in this subsection.
+
+Article 73
+
+Homogeneity and composition of the cash-flow generating assets
+
+▼M7
+
+1.   In order for ABSs to be eligible, all cash-flow generating assets backing the ABSs shall be homogenous, i.e. it shall be possible to report them according to one of the types of loan-level templates referred to in Annex VIII, which shall relate to one of the following:
+(a) residential mortgages;
+
+(b) loans to small and medium-sized enterprises (SMEs);
+
+(c) auto loans;
+
+(d) consumer finance loans;
+
+(e) leasing receivables;
+
+(f) credit card receivables.
+
+▼B
+
+2.   The Eurosystem may consider an ABS not to be homogenous upon assessment of the data submitted by a counterparty.
+3.   ABSs shall not contain any cash-flow generating assets originated directly by the SPV issuing the ABSs.
+4.   The cash-flow generating assets shall not consist, in whole or in part, actually or potentially, of tranches of other ABSs. This criterion shall not exclude ABSs where the issuance structure includes two SPVs and the ‘true sale’ criterion is met in respect of those SPVs so that the debt instruments issued by the second SPV are directly or indirectly backed by the original pool of assets and all cash flows from the cash-flow generating assets are transferred from the first to the second SPV.
+5.   The cash-flow generating assets shall not consist, in whole or in part, actually or potentially, of credit-linked notes, swaps or other derivatives instruments, synthetic securities or similar claims. This restriction shall not encompass swaps used in ABS transactions strictly for hedging purposes.
+
+
+
+Article 74
+
+Geographical restrictions concerning asset-backed securities and cash-flow generating assets
+
+1.   The issuer of ABSs shall be an SPV established in the EEA.
+2.   The cash-flow generating assets shall be originated by an originator incorporated in the EEA and sold to the SPV by the originator or by an intermediary incorporated in the EEA.
+3.   For the purpose of paragraph 2, a mortgage trustee or receivables trustee shall be considered to be an intermediary.
+4.   The obligors and the creditors of the cash-flow generating assets shall be incorporated, or, if they are natural persons, shall be resident in the EEA. Obligors who are natural persons must have been resident in the EEA at the time the cash-flow generating assets were originated. Any related security shall be located in the EEA and the law governing the cash-flow generating assets shall be the law of an EEA country.
+
+Article 75
+
+Acquisition of cash-flow generating assets by the SPV
+
+1.   The acquisition of the cash-flow generating assets by the SPV shall be governed by the law of a Member State.
+2.   The cash-flow generating assets shall have been acquired by the SPV from the originator or from an intermediary as laid down in Article 74(2) in a manner which the Eurosystem considers to be a ‘true sale’ that is enforceable against any third party, and which is beyond the reach of the originator and its creditors or the intermediary and its creditors, including in the event of the originator's or the intermediary's insolvency.
+
+Article 76
+
+Assessment of clawback rules for asset-backed securities
+
+1.   ABSs shall only be considered eligible if the Eurosystem has ascertained that its rights would be protected in an appropriate manner against clawback rules considered relevant by the Eurosystem under the law of the relevant EEA country. For this purpose, before the ABSs may be considered eligible, the Eurosystem may require:
+(a) an independent legal assessment in a form and substance acceptable to the Eurosystem that sets out the applicable clawback rules in the relevant country; and/or
+
+(b) other documents, such as a solvency certificate from the transferor for the suspect period, which is a certain period of time during which the sale of cash-flow generating assets backing the ABSs may be invalidated by a liquidator.
+
+2.   Clawback rules, which the Eurosystem considers to be severe and therefore not acceptable, shall include:
+(a) rules under which the sale of cash-flow generating assets backing the ABSs can be invalidated by a liquidator solely on the basis that the sale was concluded within the suspect period, as referred to in paragraph 1(b), before the declaration of insolvency of the seller; or
+
+(b) rules where such invalidation can only be prevented by the transferee if they can prove that they were not aware of the insolvency of the seller at the time of the sale.
+
+For the purposes of this criterion, the seller may be the originator or intermediary, as applicable.
+
+Article 77
+
+Non-subordination of tranches for asset-backed securities
+
+1.   Only tranches or sub-tranches of ABSs that are not subordinated to other tranches of the same issue over the lifetime of the ABS shall be considered eligible.
+2.   A tranche or sub-tranche shall be considered to be non-subordinated to other tranches or sub-tranches of the same issue if, in accordance with the post-enforcement priority of payments, and if applicable, the post-acceleration priority of payments as set out in the prospectus, no other tranche or sub-tranche shall be given priority over that tranche or sub-tranche in respect of receiving payment, i.e. principal and interest, and thereby such tranche or sub-tranche shall be last in incurring losses among the different tranches or sub-tranches.
+
+Article 77a
+
+Restrictions on investments for asset-backed securities
+
+Any investments of monies standing to the credit of the issuer's or of any intermediary SPV's bank accounts under the transaction documentation shall not consist, in whole or in part, actually or potentially, of tranches of other ABSs, credit-linked notes, swaps or other derivative instruments, synthetic securities or similar claims.
+
+▼B
+
+Article 78
+
+Availability of loan level data for asset-backed securities
+
+
+1.   Comprehensive and standardised loan-level data on the pool of cash-flow generating assets backing the ABSs shall be made available in accordance with the procedures set out in Annex VIII, which include the information on the required data quality score and the requirements for loan-level data repositories. In its eligibility assessment, the Eurosystem takes account of: (a) any failure to deliver data, and (b) how frequently individual loan-level data fields are found not to contain meaningful data.
+2.  Notwithstanding the required scoring values set out in Annex VIII in respect of loan-level data, the Eurosystem may accept as collateral asset-backed securities with a score lower than the required scoring value (A1), on a case-by-case basis and subject to the provision of adequate explanations for the failure to achieve the required score. For each adequate explanation, the Eurosystem shall specify a maximum tolerance level and a tolerance horizon, as further specified on the ECB's website. The tolerance horizon shall indicate the time period within which the data quality for the ABSs must improve.
+
+Article 79
+
+Data requests for asset-backed securities
+
+The Eurosystem shall reserve the right to request from any third party it considers relevant, including but not restricted to, the issuer, the originator and/or the arranger, any clarification and/or legal confirmation that it considers necessary to assess the eligibility of ABSs and with regard to the provision of loan-level data. If a third party fails to comply with a particular request, the Eurosystem may decide not to accept the ABSs as collateral or may decide to suspend the eligibility of such collateral.
+
+
+
+Subsection 2
+
+Specific eligibility criteria for covered bonds backed by asset-backed securities
+
+Article 80
+
+Eligibility criteria for covered bonds backed by asset-backed securities
+
+1.  In the case of covered bonds backed by asset-backed securities, the cover pool of the covered bond shall only contain ABSs that comply with all of the following.
+(a) The cash-flow generating assets backing the ABSs meet the criteria laid down in Article 129(1)(d) to (f) of Regulation (EU) No 575/2013 in respect of ABSs backing covered bonds.
+
+(b) The cash-flow generating assets were originated by an entity closely linked to the issuer of the covered bonds, as described in Article 138.
+
+(c) They are used as a technical tool to transfer mortgages or guaranteed real estate loans from the originating entity into the cover pool of the respective covered bond.
+
+2.   Subject to paragraph 4, the NCBs shall use the following measures to verify that the cover pool of covered bonds backed by ABSs does not contain ABSs that do not comply with paragraph 1.
+(a) On a quarterly basis, the NCBs shall request a self-certification and undertaking of the issuer confirming that the cover pool of covered bonds backed by ABSs does not contain ABSs that do not comply with paragraph 1. The NCB's request shall specify that the self-certification must be signed by the issuer's Chief Executive Officer (CEO), Chief Financial Officer (CFO) or a manager of similar seniority, or by an authorised signatory on their behalf.
+
+(b) On an annual basis, NCBs shall request an ex post confirmation by external auditors or cover pool monitors from the issuer, confirming that the cover pool of covered bonds backed by ABSs does not contain ABSs that do not comply with paragraph 1 for the monitoring period.
+
+3.   If the issuer fails to comply with a particular request or if the Eurosystem deems the content of a confirmation incorrect or insufficient to the extent that it is not possible to verify that the cover pool of covered bonds backed by ABSs comply with criteria in paragraph 1, the Eurosystem shall decide not to accept the covered bonds as eligible collateral or to suspend their eligibility.
+4.   Where the applicable legislation or prospectus exclude the inclusion of ABSs that do not comply with paragraph 1 as cover pool assets, no verification pursuant to paragraph 2 shall be required.
+5.   For the purposes of paragraph 1(b), the close links shall be determined at the time that the senior units of the asset-backed securities are transferred into the cover pool of the covered bond.
+
+
+
+Subsection 3
+
+Specific eligibility criteria for debt certificates issued by the Eurosystem
+
+Article 81
+
+Eligibility criteria for debt certificates issued by the Eurosystem
+
+1.   Debt certificates issued by the ECB and debt certificates issued by the NCBs prior to the date of adoption of the euro in their respective Member State whose currency is the euro shall be eligible as collateral for Eurosystem credit operations.
+2.   Debt certificates issued by the Eurosystem shall not be subject to the criteria laid down in this Chapter.
+
+
+Subsection 4
+
+Specific eligibility criteria for certain unsecured debt instruments
+
+
+Article 81a
+
+Eligibility criteria for certain unsecured debt instruments issued by credit institutions or investment firms, or by their closely linked entities
+
+1.   By derogation from Article 64 and provided that they fulfil all other eligibility criteria, the following subordinated unsecured debt instruments issued by credit institutions or investment firms, or by their closely linked entities as referred to in Article 141(3), shall be eligible until maturity, provided that they are issued before 31 December 2018 and their subordination results neither from contractual subordination as defined in paragraph 2 nor from structural subordination pursuant to paragraph 3:
+
+
+— debt instruments issued by agencies,
+
+— debt instruments guaranteed by a Union public sector entity which has the right to levy taxes by way of a guarantee that complies with the features laid down in Article 114(1) to (4) and Article 115.
+2.   For the purposes of paragraph 1, contractual subordination means subordination based on the terms and conditions of an unsecured debt instrument, irrespective of whether such subordination is statutorily recognised.
+3.   Unsecured debt instruments issued by holding companies, including any intermediate holding companies, subject to national legislation implementing Directive 2014/59/EU or to similar recovery and resolution frameworks, shall be ineligible.
+4.   For unsecured debt instruments issued by credit institutions or investment firms, or by their closely linked entities as referred to in Article 141(3), other than unsecured debt instruments issued by multilateral development banks or international organisations as referred to in Article 70(4), the issuer shall be established in the Union.
