@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useEffect, useState } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
     import {
@@ -23,13 +23,28 @@ import { MarkButton, BlockButton } from './Buttons'
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
-const RichTextExample = () => {
+const RichTextExample = ({ newValue }) => {
     const renderElement = useCallback(props => <Element {...props} />, [])
     const renderLeaf = useCallback(props => <Leaf {...props} />, [])
     const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
+    useEffect(() => {
+        console.log('useEffect triggered');
+        if (newValue && editor) {
+            console.log(newValue);
+            Editor.deleteForward(editor); // Remove all
+            Transforms.insertText(editor, newValue); // Insert new text
+        }
+    }, [newValue, editor]);
+    
+
     return (
-    <Slate editor={editor} initialValue={initialValue}>
+    <Slate editor={editor} initialValue={[
+        {
+            type: 'paragraph',
+            children: [{ text: 'The summary will be placed here.' }],
+        },
+    ]}>
         <Toolbar>
         <MarkButton format="bold" icon="format_bold" />
         <MarkButton format="italic" icon="format_italic" />
@@ -48,7 +63,7 @@ const RichTextExample = () => {
         <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder="Enter some rich text…"
+        placeholder={newValue}
         spellCheck
         autoFocus
         onKeyDown={event => {
@@ -198,41 +213,5 @@ const Leaf = ({ attributes, children, leaf }) => {
 
     return <span {...attributes}>{children}</span>
     }
-
-    const initialValue = [
-    {
-        type: 'paragraph',
-        children: [
-        { text: 'This is editable ' },
-        { text: 'rich', bold: true },
-        { text: ' text, ' },
-        { text: 'much', italic: true },
-        { text: ' better than a ' },
-        { text: '<textarea>', code: true },
-        { text: '!' },
-        ],
-    },
-    {
-        type: 'paragraph',
-        children: [
-        {
-            text: "Since it's rich text, you can do things like turn a selection of text ",
-        },
-        { text: 'bold', bold: true },
-        {
-            text: ', or add a semantically rendered block quote in the middle of the page, like this:',
-        },
-        ],
-    },
-    {
-        type: 'block-quote',
-        children: [{ text: 'A wise quote.' }],
-    },
-    {
-        type: 'paragraph',
-        align: 'center',
-        children: [{ text: 'Try it out for yourself!' }],
-    },
-]
 
 export default RichTextExample

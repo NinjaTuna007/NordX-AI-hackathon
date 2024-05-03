@@ -1,14 +1,11 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import RichTextExample from './RichText.js';
 
-
 function TextComparisonComponent() {
   const [textFile1, setTextFile1] = useState('');
   const [textFile2, setTextFile2] = useState('');
   const [summary, setSummary] = useState('');
   const [pairs, setPairs] = useState([]);
-  
-  const editorRef = useRef(null);
 
   const handleFileUpload1 = (event) => {
     setTextFile1(event.target.files[0]);
@@ -17,15 +14,6 @@ function TextComparisonComponent() {
   const handleFileUpload2 = (event) => {
     setTextFile2(event.target.files[0]);
   };
-
-
-  /*useEffect(() => {
-    // Update the Slate editor with the new summary text
-    if (editor.children[0].children[0].text !== summary) {
-      editor.children[0].children[0].text = summary;
-      editor.onChange();
-    }
-  }, [summary]);*/
 
   const handleCompareText = async (event) => {
     event.preventDefault();
@@ -63,8 +51,7 @@ function TextComparisonComponent() {
       <input type="file" onChange={handleFileUpload2} />
       <button onClick={handleCompareText}>Compare Text</button>
       <h2>Summary</h2>
-      <RichTextExample></RichTextExample>
-      <p>{summary}</p>
+      <RichTextExample newValue={summary}></RichTextExample>
       <h2>Differences</h2>
       <ul>
         {pairs.map((diff, index) => (
