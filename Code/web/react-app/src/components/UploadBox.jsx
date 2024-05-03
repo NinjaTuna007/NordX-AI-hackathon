@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import './FileInput.css';
 
 const UploadBox = ({
   uploadOriginalFile,
@@ -6,6 +7,8 @@ const UploadBox = ({
   propFlex,
   propMinWidth,
   propAlignSelf,
+  handleUploadFile,
+  index
 }) => {
   const uploadBoxStyle = useMemo(() => {
     return {
@@ -14,6 +17,11 @@ const UploadBox = ({
       alignSelf: propAlignSelf,
     };
   }, [propFlex, propMinWidth, propAlignSelf]);
+
+  const handleFileChange = (event) => {
+    console.log("Triggered");
+    handleUploadFile(index, event.target.files[0]);
+  };
 
   return (
     <div
@@ -27,11 +35,14 @@ const UploadBox = ({
             {uploadOriginalFile}
           </div>
         </div>
-        <img
-          className="h-[51px] w-[51px] relative z-[1]"
-          alt=""
-          src="/clouduploadvector.svg"
-        />
+        <div className="file-input-wrapper">
+          <input type="file" onClick={handleFileChange} className="file-input" />
+          <img
+              className="file-input-icon h-[51px] w-[51px] relative z-[1]"
+              alt=""
+              src="/clouduploadvector.svg"
+          />
+        </div>
       </div>
       <div className="w-[331px] h-[52px] relative text-smi font-inter inline-block shrink-0 max-w-full z-[1]">
         {dragAndDropOrUploadInTxtF}

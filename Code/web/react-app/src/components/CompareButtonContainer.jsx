@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import UploadBox from "./UploadBox";
 import { useNavigate } from "react-router-dom";
 import FrameComponent from "./FrameComponent";
@@ -8,18 +8,34 @@ import FrameComponent from "./FrameComponent";
 const CompareButtonContainer = () => {
   const navigate = useNavigate();
 
-  const [textFile1, setTextFile1] = useState('');
-  const [textFile2, setTextFile2] = useState('');
+  const [textFile1, setTextFile1] = useState(null);
+  const [textFile2, setTextFile2] = useState(null);
   const [summary, setSummary] = useState('');
   const [pairs, setPairs] = useState([]);
 
-  const handleFileUpload1 = (event) => {
-    setTextFile1(event.target.files[0]);
-  };
+  useEffect(() => {
+    const fetchInitialFiles = async () => {
+      try {
+        const response1 = await fetch('/OLD.txt');
+        const response2 = await fetch('/NEW.txt');
+        const text1 = await response1.text();
+        const text2 = await response2.text();
+        setTextFile1(text1);
+        setTextFile2(text2);
+      } catch (error) {
+        console.error('Error fetching initial files:', error);
+      }
+    };
+    fetchInitialFiles();
+  }, []);
 
-  const handleFileUpload2 = (event) => {
-    setTextFile2(event.target.files[0]);
-  };
+  const handleUploadFile = useCallback((index, file) => {
+    if (index === 1) {
+      setTextFile1(file);
+    } else {
+      setTextFile2(file);
+    }
+  }, []);
 
   const handleCompareText = async () => {
     // Create a dictionary with the text from the input fields
@@ -71,17 +87,17 @@ const CompareButtonContainer = () => {
       <div className="self-stretch flex flex-row items-start justify-center pt-0 px-0 pb-[23px] box-border gap-[76px] max-w-full text-black mq450:gap-[19px] mq800:flex-wrap mq1150:gap-[38px]">
         <UploadBox
           uploadOriginalFile="Upload original file"
-          dragAndDropOrUploadInTxtF="Drag and drop or Upload in txt format"
-          onClick={handleFileUpload1}
+          dragAndDropOrUploadInTxtF={textFile1}
+          handleUploadFile={handleUploadFile} index={1}
         />
         <div className="flex-1 flex flex-col items-start justify-start pt-0.5 px-0 pb-0 box-border min-w-[274px] max-w-full mq800:flex-1">
           <UploadBox
             uploadOriginalFile="Upload  file to compare"
-            dragAndDropOrUploadInTxtF="Drag and drop or Upload in txt format."
+            dragAndDropOrUploadInTxtF={textFile2}
             propFlex="unset"
             propMinWidth="unset"
             propAlignSelf="stretch"
-            onClick={handleFileUpload2}
+            handleUploadFile={handleUploadFile} index={2}
           />
         </div>
       </div>

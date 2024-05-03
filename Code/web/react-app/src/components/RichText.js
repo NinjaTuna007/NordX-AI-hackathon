@@ -42,7 +42,7 @@ const RichTextExample = ({ newValue }) => {
     <Slate editor={editor} initialValue={[
         {
             type: 'paragraph',
-            children: [{ text: 'The summary will be placed here.' }],
+            children: [{ text: '' }],
         },
     ]}>
         <Toolbar>
@@ -63,7 +63,7 @@ const RichTextExample = ({ newValue }) => {
         <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder={newValue}
+        placeholder={"The summary will be placed here."}
         spellCheck
         autoFocus
         onKeyDown={event => {
