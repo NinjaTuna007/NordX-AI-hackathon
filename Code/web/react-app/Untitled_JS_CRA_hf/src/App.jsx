@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 //import MacBookPro141 from "./pages/MacBookPro141";
 import GuideView from "./pages/GuideView";
-import ChangedView from "./pages/ChangedView";
 import ChangeView from "./pages/ChangeView";
 
 function App() {
@@ -62,7 +61,6 @@ function App() {
     <Routes>
       <Route path="/" element={<MacBookPro141 />} />
       <Route path="/guideview" element={<GuideView />} />
-      <Route path="/changedview" element={<ChangedView />} />
       <Route path="/changeview" element={<ChangeView />} />
     </Routes>
   );
