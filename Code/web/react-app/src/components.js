@@ -1,6 +1,7 @@
 import React, { ReactNode, Ref, PropsWithChildren } from 'react'
 import ReactDOM from 'react-dom'
 import { cx, css } from '@emotion/css'
+import Icon from '@mui/material/Icon';
 
 export const Button = React.forwardRef(
     (
@@ -85,23 +86,18 @@ export const EditorValue = React.forwardRef(
     }
 )
 
-export const Icon = React.forwardRef(
+export const CustomIcon = React.forwardRef(
     (
         { className, ...props },
         ref
     ) => (
         <span
-        {...props}
-        ref={ref}
-        className={cx(
-            'material-icons',
-            className,
-            css`
-            font-size: 18px;
-            vertical-align: text-bottom;
-            `
-        )}
-        />
+            {...props}
+            ref={ref}
+            className={className}
+        >
+            <Icon />
+        </span>
     )
 )
 

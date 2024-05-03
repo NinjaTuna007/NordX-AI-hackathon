@@ -41,6 +41,8 @@ def compare_text():
     prompt = "Based on the following context, summarise the differences provided with the following scores. The scores indicate how much emphasis you should put on the specific difference in the summary, with the higher scores being more important.\n"
     prompt += json.dumps(data)
 
+    print(prompt)
+
     # Generate mega report using prompt and call_titan_api
     summary = call_titan_api(prompt)
 

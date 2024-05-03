@@ -10,7 +10,8 @@ import { Editable, withReact, useSlate, Slate } from 'slate-react'
 } from 'slate'
 import { withHistory } from 'slate-history'
 
-import { Button, Icon, Toolbar } from './components'
+import { Button, CustomIcon, Toolbar } from './components'
+import { MarkButton, BlockButton } from './Buttons'
 
     const HOTKEYS = {
     'mod+b': 'bold',
@@ -196,40 +197,6 @@ const Leaf = ({ attributes, children, leaf }) => {
     }
 
     return <span {...attributes}>{children}</span>
-    }
-
-    const BlockButton = ({ format, icon }) => {
-    const editor = useSlate()
-    return (
-        <Button
-        active={isBlockActive(
-            editor,
-            format,
-            TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
-        )}
-        onMouseDown={event => {
-            event.preventDefault()
-            toggleBlock(editor, format)
-        }}
-        >
-        <Icon>{icon}</Icon>
-        </Button>
-    )
-    }
-
-    const MarkButton = ({ format, icon }) => {
-    const editor = useSlate()
-    return (
-        <Button
-        active={isMarkActive(editor, format)}
-        onMouseDown={event => {
-            event.preventDefault()
-            toggleMark(editor, format)
-        }}
-        >
-        <Icon>{icon}</Icon>
-        </Button>
-    )
     }
 
     const initialValue = [
