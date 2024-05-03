@@ -1,8 +1,18 @@
 import os
 import openai
+from typing import List, Tuple
+import json
+from flask import Flask, render_template, request
+
+with open('utils/sections.json', 'r') as file:
+    data = json.load(file)
+
+sections = data['sections']
+
+# Use the sections data in your functions
 
 # Set up the OpenAI API key
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+# openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Define the sections to compare
 section1 = "This is the content of the first section..."
@@ -10,12 +20,12 @@ section2 = "This is the content of the second section..."
 
 # Prepare the prompt for ChatGPT
 prompt = f"""
-Please compare the following two sections and provide a report highlighting the key differences between them:
+I want you to identify and highlight significant changes in two text samples provided - OLD and NEW. Respond only with two lists, one for additions and the other for deletions in the NEW text as compared to the OLD. Report both additions and deletions as phrases reproduced from the NEW and OLD documents respectively.
 
-Section 1:
+Section 1  OLD:
 {section1}
 
-Section 2: 
+Section 2 New: 
 {section2}
 
 In your report, please focus on:
@@ -23,7 +33,7 @@ In your report, please focus on:
 - Summarizing the key insights or information that is unique to each section
 - Providing an overall assessment of how the sections differ in terms of content, tone, or perspective
 
-Please structure your response in a clear and concise manner, with appropriate headings and formatting.
+Please structure your response in a clear manner.
 """
 
 # Generate the comparison report using ChatGPT

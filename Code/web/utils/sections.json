@@ -1,0 +1,12 @@
+{
+  "sections": [
+    {
+      "name": "section1",
+      "content": "This is the content of the first section..."
+    },
+    {
+      "name": "section2",
+      "content": "This is the content of the second section..."
+    }
+  ]
+}
