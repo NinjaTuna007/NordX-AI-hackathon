@@ -1,4 +1,6 @@
-const Result = () => {
+import { FunctionComponent } from "react";
+
+const Result: FunctionComponent = () => {
   return (
     <div className="self-stretch bg-darkblue flex flex-row items-start justify-between pt-[18.3px] pb-[15.3px] pr-[47px] pl-3 box-border max-w-full gap-[20px] z-[1] text-left text-5xl text-white font-inter mq450:flex-wrap mq1150:pr-[23px] mq1150:box-border">
       <img

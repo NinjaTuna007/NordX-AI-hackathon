@@ -1,4 +1,13 @@
-const FrameComponent1 = ({ onChevronRightIconClick }) => {
+import { FunctionComponent } from "react";
+
+export type FrameComponent1Type = {
+  /** Action props */
+  onChevronRightIconClick?: () => void;
+};
+
+const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
+  onChevronRightIconClick,
+}) => {
   return (
     <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0.5 pl-px box-border max-w-full text-left text-5xl text-white font-inter">
       <div className="flex-1 bg-darkblue flex flex-row items-start justify-between pt-[18.3px] pb-[15.3px] pr-[47px] pl-3 box-border max-w-full gap-[20px] z-[1] mq450:flex-wrap mq1150:pr-[23px] mq1150:box-border">

@@ -1,7 +1,7 @@
-import { useCallback } from "react";
+import { FunctionComponent, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar: FunctionComponent = () => {
   const navigate = useNavigate();
 
   const onUsageTextClick = useCallback(() => {

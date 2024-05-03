@@ -1,4 +1,15 @@
-const Navbar1 = ({ onHomeIconClick, onUsageTextClick }) => {
+import { FunctionComponent } from "react";
+
+export type Navbar1Type = {
+  /** Action props */
+  onHomeIconClick?: () => void;
+  onUsageTextClick?: () => void;
+};
+
+const Navbar1: FunctionComponent<Navbar1Type> = ({
+  onHomeIconClick,
+  onUsageTextClick,
+}) => {
   return (
     <header className="self-stretch bg-gainsboro flex flex-row items-start justify-start pt-[17px] px-[25px] pb-2 box-border gap-[36px] top-[0] z-[99] sticky max-w-full text-left text-17xl text-gray font-open-sans mq800:gap-[18px]">
       <div className="h-[91px] w-[1512px] relative bg-gainsboro hidden max-w-full" />

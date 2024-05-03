@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import MacBookPro141 from "./pages/MacBookPro141";
 import GuideView from "./pages/GuideView";
-import ChangedView from "./pages/ChangedView";
 import ChangeView from "./pages/ChangeView";
+import ChangedView from "./pages/ChangedView";
 
 function App() {
   const action = useNavigationType();
@@ -34,11 +34,11 @@ function App() {
         title = "";
         metaDescription = "";
         break;
-      case "/changedview":
+      case "/changeview":
         title = "";
         metaDescription = "";
         break;
-      case "/changeview":
+      case "/changedview":
         title = "";
         metaDescription = "";
         break;
@@ -49,7 +49,7 @@ function App() {
     }
 
     if (metaDescription) {
-      const metaDescriptionTag = document.querySelector(
+      const metaDescriptionTag: HTMLMetaElement | null = document.querySelector(
         'head > meta[name="description"]'
       );
       if (metaDescriptionTag) {
@@ -62,8 +62,8 @@ function App() {
     <Routes>
       <Route path="/" element={<MacBookPro141 />} />
       <Route path="/guideview" element={<GuideView />} />
-      <Route path="/changedview" element={<ChangedView />} />
       <Route path="/changeview" element={<ChangeView />} />
+      <Route path="/changedview" element={<ChangedView />} />
     </Routes>
   );
 }

@@ -1,13 +1,23 @@
-import { useMemo } from "react";
+import { FunctionComponent, useMemo, type CSSProperties } from "react";
 
-const UploadBox = ({
+export type UploadBoxType = {
+  uploadOriginalFile?: string;
+  dragAndDropOrUploadInTxtF?: string;
+
+  /** Style props */
+  propFlex?: CSSProperties["flex"];
+  propMinWidth?: CSSProperties["minWidth"];
+  propAlignSelf?: CSSProperties["alignSelf"];
+};
+
+const UploadBox: FunctionComponent<UploadBoxType> = ({
   uploadOriginalFile,
   dragAndDropOrUploadInTxtF,
   propFlex,
   propMinWidth,
   propAlignSelf,
 }) => {
-  const uploadBoxStyle = useMemo(() => {
+  const uploadBoxStyle: CSSProperties = useMemo(() => {
     return {
       flex: propFlex,
       minWidth: propMinWidth,

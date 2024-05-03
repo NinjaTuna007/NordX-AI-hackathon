@@ -1,4 +1,6 @@
-const FrameComponent = () => {
+import { FunctionComponent } from "react";
+
+const FrameComponent: FunctionComponent = () => {
   return (
     <div className="w-[407px] flex flex-row items-start justify-start max-w-full text-left text-5xl text-white font-open-sans">
       <div className="flex-1 relative inline-block max-w-full mq450:text-lgi">

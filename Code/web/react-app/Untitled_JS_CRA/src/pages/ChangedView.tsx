@@ -1,8 +1,8 @@
-import { useCallback } from "react";
+import { FunctionComponent, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar1 from "../components/Navbar1";
 
-const ChangedView = () => {
+const ChangedView: FunctionComponent = () => {
   const navigate = useNavigate();
 
   const onHomeIconClick = useCallback(() => {

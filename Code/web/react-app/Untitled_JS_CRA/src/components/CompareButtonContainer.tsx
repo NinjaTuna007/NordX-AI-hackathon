@@ -1,9 +1,9 @@
-import { useCallback } from "react";
+import { FunctionComponent, useCallback } from "react";
 import UploadBox from "./UploadBox";
 import { useNavigate } from "react-router-dom";
 import FrameComponent from "./FrameComponent";
 
-const CompareButtonContainer = () => {
+const CompareButtonContainer: FunctionComponent = () => {
   const navigate = useNavigate();
 
   const onRectangleClick = useCallback(() => {
