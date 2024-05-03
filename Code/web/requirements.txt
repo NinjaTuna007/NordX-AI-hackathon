@@ -1,11 +1,5 @@
 flask
-transformers
 torch
-openai
-pinecone-client
-tiktoken
-PyMuPDF
 pyperclip
 requests
-react
-react-dom
+
