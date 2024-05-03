@@ -5,6 +5,8 @@ import json
 import numpy as np # # Initialize the tokenizer and model
 from text_viewer import TextViewer
 
+from prompts import prompt_sdr
+
 from titan_api import call_titan_api
 
 def load_data(file_path):
@@ -37,18 +39,15 @@ def compare_text():
 
     with open('example.json', 'r') as f:
         data = json.load(f)
+    
+    pairs = process_pairs(data)
+    sdrs = [pair['SDR'] for pair in pairs]
 
-    prompt = "Based on the following context, summarise the differences provided with the following scores. The scores indicate how much emphasis you should put on the specific difference in the summary, with the higher scores being more important.\n"
-    prompt += json.dumps(data)
-
-    print(prompt)
-
+    # Add 2 newlines between every sdrs item and add it to the prompt
+    prompt = prompt_sdr + '\n\n'.join(sdrs)
+    
     # Generate mega report using prompt and call_titan_api
     summary = call_titan_api(prompt)
-
-    pairs = process_pairs(data)
-
-    print(summary)
 
     response_data = {
         "summary": summary,
