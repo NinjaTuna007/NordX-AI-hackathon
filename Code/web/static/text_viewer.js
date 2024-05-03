@@ -24,7 +24,7 @@ function readTextFile(file, index) {
     }
 }
 
-function saveToJson() {
+function submit() {
     const textFile1 = document.getElementById('text-file1').value;
     const textFile2 = document.getElementById('text-file2').value;
 
@@ -35,24 +35,54 @@ function saveToJson() {
     };
     // Send to python script and get some response back
 
-    fetch('/save-text', {
+    fetch('/submit-text', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(textData)
     })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the JSON response
+    })
     .then(data => {
-        console.log(data);
-        // Assuming 'data' contains the 'pairs' data for the accordion
-        const pairs = data.pairs; // Extract the 'pairs' data
+        const summary = data.summary;
+        const pairs = data.pairs;
 
-        // Call the buildAccordion function with the pairs data
-        console.log(pairs);
-
-        console.log('Text data saved to JSON file and accordion updated');
+        console.log(summary);
+        // Use pairs to build accordion
+        buildAccordion(pairs);
     })
     .catch(error => {
-        console.error('Error saving text data to JSON file:', error);
+        console.error('Error building accordion:', error);
     });
+}
+
+function buildAccordion(pairs) {
+    const accordionContainer = document.createElement('div');
+    accordionContainer.classList.add('accordion');
+
+    pairs.forEach((pair, index) => {
+        console.log(pair);
+        console.log(index);
+        const accordionItem = document.createElement('div');
+        accordionItem.classList.add('accordion-item');
+
+        const accordionHeader = document.createElement('div');
+        accordionHeader.classList.add('accordion-header');
+        accordionHeader.textContent = `Difference ${index + 1}: Score ${pair.score}`;
+
+        const accordionBody = document.createElement('div');
+        accordionBody.classList.add('accordion-body');
+        accordionBody.textContent = pair.SDR;
+
+        accordionItem.appendChild(accordionHeader);
+        accordionItem.appendChild(accordionBody);
+        accordionContainer.appendChild(accordionItem);
+    });
+
+    document.body.appendChild(accordionContainer);
 }
