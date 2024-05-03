@@ -1,13 +1,12 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import UploadBox from "./UploadBox";
 import { useNavigate } from "react-router-dom";
 import FrameComponent from "./FrameComponent";
-import { useHistory } from 'react-router-dom';
+
 
 
 const CompareButtonContainer = () => {
   const navigate = useNavigate();
-  const history = useHistory();
 
   const [textFile1, setTextFile1] = useState('');
   const [textFile2, setTextFile2] = useState('');
@@ -22,9 +21,7 @@ const CompareButtonContainer = () => {
     setTextFile2(event.target.files[0]);
   };
 
-  const handleCompareText = async (event) => {
-    event.preventDefault();
-
+  const handleCompareText = async () => {
     // Create a dictionary with the text from the input fields
     const textData = {
       "OLD": textFile1,
@@ -55,10 +52,8 @@ const CompareButtonContainer = () => {
     const { summary, pairs } = await handleCompareText();
 
     // Navigate to the new page and pass the summary and pairs as state
-    history.push({
-      pathname: '/changeview', // Replace with the actual path to your new page
-      state: { summary, pairs },
-    });
+    navigate('/changeview', { state: { summary, pairs } });
+
   };
 
   return (

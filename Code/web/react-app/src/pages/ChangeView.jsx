@@ -4,10 +4,13 @@ import Navbar1 from "../components/Navbar1";
 import FrameComponent1 from "../components/FrameComponent11";
 import Result from "../components/Result";
 import { useLocation } from 'react-router-dom';
+import RichTextExample from '../components/RichText.js';
+
 
 
 const ChangeView = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { summary, pairs } = location.state;
 
   const onHomeIconClick = useCallback(() => {
@@ -19,7 +22,16 @@ const ChangeView = () => {
   }, [navigate]);
 
   const onChevronRightIconClick = useCallback(() => {
-    navigate("/changedview");
+    // navigate("/changedview");
+    // Drop down summary - use pairs
+    /*
+    {pairs.map((diff, index) => (
+          <li key={index}>
+            <p>Score: {diff.score}</p>
+            <p>{diff.SDR}</p>
+          </li>
+        ))}
+    */
   }, [navigate]);
 
   return (
@@ -39,16 +51,8 @@ const ChangeView = () => {
             <div className="self-stretch rounded-xl bg-white flex flex-col items-end justify-start pt-0 pb-px pr-[15px] pl-[13px] box-border max-w-full text-5xl text-gray font-open-sans">
           <div className="w-[881px] h-[164px] relative rounded-xl bg-white hidden max-w-full z-[1]" />
           <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap mq450:justify-center">
-              <div className="relative font-semibold inline-block [text-shadow:0px_4px_4px_rgba(0,_0,_0,_0.25)] min-w-[112px] z-[1] mq450:text-lgi">
-                Summary
-              </div>
               <div className="flex flex-col items-start justify-start pt-3.5 px-0 pb-0">
                 <div className="flex flex-row items-start justify-start gap-[5px]">
-                  <img
-                    className="h-[34px] w-[34px] relative min-h-[34px] z-[1]"
-                    alt=""
-                    src="/editicon.svg"
-                  />
                   <img
                     className="h-[34px] w-[34px] relative min-h-[34px] z-[1]"
                     loading="lazy"
