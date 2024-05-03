@@ -1,10 +1,5 @@
 flask
-transformers
 torch
-openai
-pinecone-client
-tiktoken
-PyMuPDF
 pyperclip
 flask
 transformers
@@ -15,5 +10,4 @@ tiktoken
 PyMuPDF
 pyperclip
 requests
-react
-react-dom
+

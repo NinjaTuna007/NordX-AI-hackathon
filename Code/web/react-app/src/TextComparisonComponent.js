@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import RichTextExample from './RichText.js';
+import RichTextExample from './components/RichText.js';
 
 function TextComparisonComponent() {
   const [textFile1, setTextFile1] = useState('');

@@ -5,10 +5,7 @@ import {
   useNavigationType,
   useLocation,
 } from "react-router-dom";
-
-import React, { useState } from 'react';
-import TextComparisonComponent from './TextComparisonComponent';
-import MacBookPro141 from "./pages/MacBookPro141";
+//import MacBookPro141 from "./pages/MacBookPro141";
 import GuideView from "./pages/GuideView";
 import ChangeView from "./pages/ChangeView";
 
