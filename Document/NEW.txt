@@ -17,7 +17,6 @@ Article 73
 
 Homogeneity and composition of the cash-flow generating assets
 
-▼M7
 
 1.   In order for ABSs to be eligible, all cash-flow generating assets backing the ABSs shall be homogenous, i.e. it shall be possible to report them according to one of the types of loan-level templates referred to in Annex VIII, which shall relate to one of the following:
 (a) residential mortgages;
@@ -32,7 +31,6 @@ Homogeneity and composition of the cash-flow generating assets
 
 (f) credit card receivables.
 
-▼B
 
 2.   The Eurosystem may consider an ABS not to be homogenous upon assessment of the data submitted by a counterparty.
 3.   ABSs shall not contain any cash-flow generating assets originated directly by the SPV issuing the ABSs.
@@ -87,7 +85,6 @@ Restrictions on investments for asset-backed securities
 
 Any investments of monies standing to the credit of the issuer's or of any intermediary SPV's bank accounts under the transaction documentation shall not consist, in whole or in part, actually or potentially, of tranches of other ABSs, credit-linked notes, swaps or other derivative instruments, synthetic securities or similar claims.
 
-▼B
 
 Article 78
 
