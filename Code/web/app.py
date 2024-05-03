@@ -154,9 +154,15 @@ def compare_text():
 
     # Add 2 newlines between every sdrs item and add it to the prompt
     prompt = prompt_sdr + '\n\n'.join(sdrs)
+    prompt = prompt.replace("`", "")
+
+    #print('\n\n'.join(sdrs))
+
+    print(prompt)
     
     # Generate mega report using prompt and call_titan_api
     summary = call_titan_api(prompt)
+    print(summary)
 
     response_data = {
         "summary": summary,
@@ -166,7 +172,7 @@ def compare_text():
 
 def process_pairs(data):
     # Process the JSON data and create (score, SDR) pairs
-    SCORE_THRESHOLD = 0.05
+    SCORE_THRESHOLD = 0
     pairs = []
     for section_id, section_data in data.items():
         score = section_data['score']
